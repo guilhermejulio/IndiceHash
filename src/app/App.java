@@ -16,6 +16,8 @@ public class App {
     //indice responsavel por salvar e procurar algum elemento;
     public static Index indice;
 
+    public static boolean indiceCriado = false;
+
 
     /**
      * Metodo que cria uma pessoa baseada nos dados controlando a posição
@@ -77,6 +79,7 @@ public class App {
             indice.escreverPessoas(); //  escrever todas as pessoas no arquivo hash
             System.out.println("\n\nArquivo convertido e indice criado.... prescione <enter>");
             teclado.nextLine();
+            indiceCriado = true;
 
             
         }catch (FileNotFoundException e){
@@ -134,8 +137,13 @@ public class App {
                         converterArquivo(pathTXT, pathBin);
                         break;
                     case 2: 
-                        pesquisarPessoa(entrada);
-                        teclado.nextLine();
+                        if(indiceCriado == true){
+                            pesquisarPessoa(entrada);
+                            teclado.nextLine();
+                        }else{
+                            System.out.println("Indice não criado, selecione a opção <1> primeiro....");
+                            teclado.nextLine();
+                        }
                         
                         break;
                     default:
